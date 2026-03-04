@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    public function create()
+{
+    return view('todo.create');
+    // dd('新規作成画面のルート実行！');
+}
+
     public function index()
     {
         $todo = new Todo();
