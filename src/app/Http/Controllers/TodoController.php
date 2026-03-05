@@ -11,9 +11,22 @@ class TodoController extends Controller
     public function create()
 {
     return view('todo.create');
-    // dd('新規作成画面のルート実行！');
+    dd('新規作成画面のルート実行！');
 }
+// public function store(Request $request)
+// {
+//     dd('新規作成のルート実行！');
+// }
+public function store(Request $request)
+{
+    $content = $request->input('content');
 
+    $todo = new Todo(); 
+    $todo->content = $content;
+    $todo->save();
+
+    return redirect()->route('todo.index');
+}
     public function index()
     {
         $todo = new Todo();
