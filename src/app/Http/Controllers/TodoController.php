@@ -11,7 +11,7 @@ class TodoController extends Controller
     public function create()
 {
     return view('todo.create');
-    dd('新規作成画面のルート実行！');
+  
 }
 // public function store(Request $request)
 // {
@@ -19,10 +19,12 @@ class TodoController extends Controller
 // }
 public function store(Request $request)
 {
-    $content = $request->input('content');
+    $inputs = $request->all();
+    // dd($inputs);
 
     $todo = new Todo(); 
-    $todo->content = $content;
+    $todo->user_id = Auth::id();
+    $todo->fill($inputs);
     $todo->save();
 
     return redirect()->route('todo.index');
