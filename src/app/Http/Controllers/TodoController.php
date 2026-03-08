@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Todo;
-
 use Illuminate\Http\Request;
+
 
 class TodoController extends Controller
 {
@@ -13,17 +13,14 @@ class TodoController extends Controller
     return view('todo.create');
   
 }
-// public function store(Request $request)
-// {
-//     dd('新規作成のルート実行！');
-// }
+
 public function store(Request $request)
 {
     $inputs = $request->all();
-    // dd($inputs);
+  
 
     $todo = new Todo(); 
-    $todo->user_id = Auth::id();
+    // $todo->user_id = Auth::id();
     $todo->fill($inputs);
     $todo->save();
 

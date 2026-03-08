@@ -13,10 +13,4 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function store(Request $request) 
-{
-    $content = $request->input('content'); 
-
-    dd($content); 
-}
 }
