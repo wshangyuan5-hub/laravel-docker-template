@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    private $todo; //クラスプロパティ
+
+    public function __construct(Todo $todo)
+    {
+        $this->todo = $todo;//コンストラクタインジェクションで生成したTodoクラスのインスタンスをプロパティに代入しています
+    }
     public function create()
     {
     return view('todo.create');
@@ -18,28 +24,20 @@ public function store(Request $request)
    {
     $inputs = $request->all();
   
-
-    $todo = new Todo(); 
-    // $todo->user_id = Auth::id();
-    $todo->fill($inputs);
-    $todo->save();
+    $this->todo->fill($inputs);
+    $this->todo->save();
 
     return redirect()->route('todo.index');
    }
     public function index()
     {
-        $todo = new Todo();
-        $todos = $todo->all();
-
-        return view('todo.index', ['todos' => $todos]);
-        
+       $todos = $this->todo->all();
+       return view('todo.index', ['todos' => $todos]);  
     }
     public function show($id)
     {
-      $model = new Todo();
-      $todo = $model->find($id);
-
-      return view('todo.show', ['todo' => $todo]);
+    $todo = $this->todo->find($id);
+    return view('todo.show', ['todo' => $todo]);
     }
 
 }
