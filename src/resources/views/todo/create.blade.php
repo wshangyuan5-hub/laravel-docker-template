@@ -39,9 +39,9 @@
               <div class="card-header">ToDo作成</div>
               <div class="card-body">
                 <form method="POST" action="{{ route('todo.store') }}">
-                   @csrf
+                  @csrf
                   <div class="form-group row">
-                    <label for="name" class="col-md-4 col-form-label text-md-right">ToDo入力</label>
+                    <label for="name" class="col-md-4 col-form-label contenttext-md-right">ToDo入力</label>
                     <div class="col-md-6">
                       <input type="text" class="form-control @if($errors->has('content')) border-danger @endif" name="content" value="">
                       @if($errors->has('content'))

@@ -17,17 +17,16 @@ class TodoController extends Controller
     }
     public function create()
     {
-    return view('todo.create');
-  
+        return view('todo.create');
     }
 
-public function store(TodoRequest $request)
-   {
-    $inputs = $request->all();
-    $this->todo->fill($inputs);
-    $this->todo->save();
-    return redirect()->route('todo.index');
-   }
+    public function store(TodoRequest $request)
+    {
+        $inputs = $request->all();
+        $this->todo->fill($inputs);
+        $this->todo->save();
+        return redirect()->route('todo.index');
+    }
     public function index()
     {
        $todos = $this->todo->all();
